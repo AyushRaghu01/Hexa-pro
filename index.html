@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My AI Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #222;
+      padding: 20px 0;
+      font-size: 2em;
+      font-weight: bold;
+    }
+    #chat-container {
+      margin: 20px auto;
+      max-width: 600px;
+      background: #222;
+      border-radius: 10px;
+      padding: 20px;
+    }
+    #messages {
+      min-height: 200px;
+      border: 1px solid #555;
+      border-radius: 5px;
+      padding: 10px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+    input, button {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+    input {
+      width: 70%;
+    }
+    button {
+      background: #0f0;
+      color: #111;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0c0;
+    }
+    .message {
+      margin: 5px 0;
+    }
+    .user {
+      color: #0f0;
+    }
+    .bot {
+      color: #0ff;
+    }
+  </style>
+</head>
+<body>
+
+<header>My AI Website</header>
+
+<div id="chat-container">
+  <div id="messages"></div>
+  <input type="text" id="user-input" placeholder="Type your message..." />
+  <button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+  const messagesDiv = document.getElementById('messages');
+  const userInput = document.getElementById('user-input');
+
+  function sendMessage() {
+    const text = userInput.value.trim();
+    if (!text) return;
+
+    // Show user message
+    const userMsg = document.createElement('div');
+    userMsg.className = 'message user';
+    userMsg.textContent = 'You: ' + text;
+    messagesDiv.appendChild(userMsg);
+
+    userInput.value = '';
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+    // Fake bot reply (for now)
+    setTimeout(() => {
+      const botMsg = document.createElement('div');
+      botMsg.className = 'message bot';
+      botMsg.textContent = 'Bot: ' + generateReply(text);
+      messagesDiv.appendChild(botMsg);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }, 500);
+  }
+
+  function generateReply(input) {
+    // Simple reply logic for now
+    return "You said: " + input;
+  }
+</script>
+
+</body>
+</html>
